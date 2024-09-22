@@ -1,3 +1,4 @@
+import 'package:android_pos_ui/utils/colors.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -111,11 +112,12 @@ class _OnboardingImageWidgetState extends State<OnboardingImageWidget> {
           child: Text(
             "Step into the Future of Retail with Our User-Friendly POS Platform. Boost Sales, Streamline Operations, and Delight Customers with a Modern, Efficient Checkout Experience!",
             style: TextStyle(
-              color: Colors.white,
+              color: ThemeColor.secondary.shade200,
+              fontWeight: FontWeight.w300,
               fontSize: getValueForScreenType(
                 context: context,
                 mobile: 13.sp.sp,
-                desktop: 12.sp,
+                desktop: 14.sp,
                 tablet: 11.sp,
               ),
             ),

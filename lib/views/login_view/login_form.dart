@@ -1,23 +1,23 @@
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
 import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/views/login_view/widget/checkbox_custom_widget.dart';
+import 'package:android_pos_ui/views/reset_password_view/reset_password_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class LoginFieldsAndButtonsSubView extends StatefulWidget {
-  const LoginFieldsAndButtonsSubView({super.key});
+class LoginFormSubView extends StatefulWidget {
+  const LoginFormSubView({super.key});
 
   @override
-  State<LoginFieldsAndButtonsSubView> createState() =>
-      _LoginFieldsAndButtonsSubViewState();
+  State<LoginFormSubView> createState() => _LoginFormSubViewState();
 }
 
-class _LoginFieldsAndButtonsSubViewState
-    extends State<LoginFieldsAndButtonsSubView> {
+class _LoginFormSubViewState extends State<LoginFormSubView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool rememberMe = false;
@@ -69,7 +69,9 @@ class _LoginFieldsAndButtonsSubViewState
                       onChanged: (value) {},
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Nav.push(context, const ResetPasswordView());
+                      },
                       child: Text(
                         "Forgot Password",
                         style: TextStyle(

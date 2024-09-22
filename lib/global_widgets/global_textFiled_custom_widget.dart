@@ -30,7 +30,10 @@ class _GlobalTextFiledCustomWidgetState
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.h),
       child: TextField(
-        style: TextStyle(color: ThemeColor.secondary.shade500),
+        style: TextStyle(
+          color: ThemeColor.secondary.shade500,
+          height: 1.3,
+        ),
         decoration: InputDecoration(
           labelText: widget.label,
           fillColor: Colors.transparent,
