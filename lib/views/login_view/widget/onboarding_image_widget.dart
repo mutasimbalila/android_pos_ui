@@ -32,7 +32,7 @@ class _OnboardingImageWidgetState extends State<OnboardingImageWidget> {
               // const Spacer(),
               Container(
                 width: double.infinity,
-                height: 220.h,
+                height: 230.h,
                 padding: const EdgeInsets.all(30),
                 color: const Color(0xff1A1C1E),
                 child: Column(
@@ -101,6 +101,7 @@ class _OnboardingImageWidgetState extends State<OnboardingImageWidget> {
               context: context,
               mobile: 18.sp,
               desktop: 27.sp,
+              tablet: 19.sp,
             ),
             fontWeight: FontWeight.bold,
           ),
@@ -115,6 +116,7 @@ class _OnboardingImageWidgetState extends State<OnboardingImageWidget> {
                 context: context,
                 mobile: 13.sp.sp,
                 desktop: 12.sp,
+                tablet: 11.sp,
               ),
             ),
           ),

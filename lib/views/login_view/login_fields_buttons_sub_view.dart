@@ -87,10 +87,10 @@ class _LoginFieldsAndButtonsSubViewState
                 _buildDividerAndOrText(),
                 RichText(
                   text: TextSpan(
-                    text: "Don’t have an account? ",
+                    text: "Don’t have an account ? ",
                     style: TextStyle(
                       color: ThemeColor.secondary.shade400,
-                      fontSize: 15.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w300,
                     ),
                     children: [
@@ -99,8 +99,8 @@ class _LoginFieldsAndButtonsSubViewState
                         recognizer: TapGestureRecognizer()..onTap = () => {},
                         style: TextStyle(
                           color: ThemeColor.information,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15.sp,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
                         ),
                       )
                     ],

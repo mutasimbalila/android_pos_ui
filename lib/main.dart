@@ -18,9 +18,11 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, SizingInformation sizingInfo) {
         return ScreenUtilInit(
           minTextAdapt: true,
-          designSize: sizingInfo.isDesktop || sizingInfo.isTablet
+          designSize: sizingInfo.isDesktop
               ? const Size(1440, 900)
-              : ScreenUtil.defaultSize,
+              : sizingInfo.isTablet
+                  ? const Size(1024, 768)
+                  : ScreenUtil.defaultSize,
           useInheritedMediaQuery: true,
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
