@@ -1,17 +1,17 @@
 import 'package:android_pos_ui/global_widgets/global_term_condition_privacy_policy_widget.dart';
-import 'package:android_pos_ui/views/login_view/login_form.dart';
 import 'package:android_pos_ui/views/login_view/widget/onboarding_image_widget.dart';
+import 'package:android_pos_ui/views/reset_password_view/reset_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class ResetPasswordView extends StatefulWidget {
+  const ResetPasswordView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _ResetPasswordViewState extends State<ResetPasswordView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,18 +27,18 @@ class _LoginViewState extends State<LoginView> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          const OnboardingImageWidget(),
           SizedBox(
             height: MediaQuery.of(context).size.height,
             child: const Column(
               children: [
                 Expanded(
-                  child: LoginFormSubView(),
+                  child: ResetPasswordForm(),
                 ),
                 GlobalTermConditionPrivacyPolicyWidget(),
               ],
             ),
           ),
-          const OnboardingImageWidget(),
         ],
       ),
     );
@@ -48,17 +48,17 @@ class _LoginViewState extends State<LoginView> {
     return const Row(
       children: [
         Expanded(
-          child: OnboardingImageWidget(),
-        ),
-        Expanded(
           child: Column(
             children: [
               Expanded(
-                child: LoginFormSubView(),
+                child: ResetPasswordForm(),
               ),
               GlobalTermConditionPrivacyPolicyWidget(),
             ],
           ),
+        ),
+        Expanded(
+          child: OnboardingImageWidget(),
         ),
       ],
     );
