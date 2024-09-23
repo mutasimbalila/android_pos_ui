@@ -1,9 +1,10 @@
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
-import 'package:android_pos_ui/utils/colors.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
-import 'package:android_pos_ui/views/login_view/widget/checkbox_custom_widget.dart';
-import 'package:android_pos_ui/views/reset_password/reset_password_view.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
+import 'package:android_pos_ui/views/auth/login_view/widget/checkbox_custom_widget.dart';
+import 'package:android_pos_ui/views/auth/reset_password/reset_password_view.dart';
+import 'package:android_pos_ui/views/tabs_views/tabs_controller_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -75,7 +76,7 @@ class _LoginFormSubViewState extends State<LoginFormSubView> {
                       child: Text(
                         "Forgot Password",
                         style: TextStyle(
-                          color: ThemeColor.information.shade500,
+                          color: ThemeColors.information.shade500,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -84,14 +85,16 @@ class _LoginFormSubViewState extends State<LoginFormSubView> {
                 ),
                 GlobalButtonWidget(
                   label: "Login",
-                  onTap: () {},
+                  onTap: () {
+                    Nav.pushRemoveUntil(context, const TabsControllerView());
+                  },
                 ),
                 _buildDividerAndOrText(),
                 RichText(
                   text: TextSpan(
                     text: "Don’t have an account ? ",
                     style: TextStyle(
-                      color: ThemeColor.secondary.shade400,
+                      color: ThemeColors.secondary.shade400,
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w300,
                     ),
@@ -100,7 +103,7 @@ class _LoginFormSubViewState extends State<LoginFormSubView> {
                         text: "Register Here",
                         recognizer: TapGestureRecognizer()..onTap = () => {},
                         style: TextStyle(
-                          color: ThemeColor.information,
+                          color: ThemeColors.information,
                           fontWeight: FontWeight.w600,
                           fontSize: 14.sp,
                         ),
@@ -126,7 +129,7 @@ class _LoginFormSubViewState extends State<LoginFormSubView> {
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Text(
               "or",
-              style: TextStyle(color: ThemeColor.secondary.shade400),
+              style: TextStyle(color: ThemeColors.secondary.shade400),
             ),
           ),
           const Expanded(child: Divider()),

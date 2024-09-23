@@ -1,5 +1,5 @@
-import 'package:android_pos_ui/utils/colors.dart';
-import 'package:android_pos_ui/views/spash_view/splash_screen.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
+import 'package:android_pos_ui/views/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'POS',
             theme: ThemeData(
-              primaryColor: ThemeColor.primary,
-              colorScheme: ColorScheme.fromSeed(seedColor: ThemeColor.primary),
+              primaryColor: ThemeColors.primary,
+              colorScheme: ColorScheme.fromSeed(seedColor: ThemeColors.primary),
               useMaterial3: false,
               fontFamily: "Manrope",
             ),

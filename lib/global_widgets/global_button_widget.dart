@@ -1,4 +1,4 @@
-import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,11 +24,11 @@ class GlobalButtonWidget extends StatelessWidget {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             elevation: 0.5,
-            backgroundColor: ThemeColor.primary,
+            backgroundColor: ThemeColors.primary,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 color: backgroundColor ??
-                    ThemeColor.primary.shade600.withOpacity(0.8),
+                    ThemeColors.primary.shade600.withOpacity(0.8),
               ),
               borderRadius: BorderRadius.circular(10.r),
             ),
