@@ -1,6 +1,6 @@
 import 'package:android_pos_ui/global_widgets/global_term_condition_privacy_policy_widget.dart';
 import 'package:android_pos_ui/views/login_view/widget/onboarding_image_widget.dart';
-import 'package:android_pos_ui/views/reset_password_view/reset_password_form.dart';
+import 'package:android_pos_ui/views/reset_password/reset_password_form.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

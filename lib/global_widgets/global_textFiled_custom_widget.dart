@@ -7,6 +7,7 @@ class GlobalTextFiledCustomWidget extends StatefulWidget {
   final String label;
   final String hint;
   final TextEditingController controller;
+  final Function(String)? onChanged;
   final bool obscureText;
 
   const GlobalTextFiledCustomWidget({
@@ -15,6 +16,7 @@ class GlobalTextFiledCustomWidget extends StatefulWidget {
     required this.hint,
     required this.controller,
     this.obscureText = false,
+    this.onChanged,
   });
 
   @override
@@ -30,9 +32,11 @@ class _GlobalTextFiledCustomWidgetState
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 15.h),
       child: TextField(
+        controller: widget.controller,
+        onChanged: widget.onChanged,
         style: TextStyle(
           color: ThemeColor.secondary.shade500,
-          height: 1.3,
+          height: 1,
         ),
         decoration: InputDecoration(
           labelText: widget.label,
@@ -46,14 +50,14 @@ class _GlobalTextFiledCustomWidgetState
           hintText: widget.hint,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           enabledBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
             borderSide: BorderSide(
               color: ThemeColor.secondary.shade200,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
+            borderRadius: BorderRadius.all(Radius.circular(10.r)),
             borderSide: BorderSide(
               color: ThemeColor.secondary.shade200,
               width: 1,
