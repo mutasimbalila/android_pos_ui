@@ -3,7 +3,7 @@ import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dar
 import 'package:android_pos_ui/utils/colors.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/views/login_view/widget/checkbox_custom_widget.dart';
-import 'package:android_pos_ui/views/reset_password_view/reset_password_view.dart';
+import 'package:android_pos_ui/views/reset_password/reset_password_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,5 +1,4 @@
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
 import 'package:android_pos_ui/utils/colors.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:flutter/material.dart';
@@ -7,15 +6,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class ResetPasswordForm extends StatefulWidget {
-  const ResetPasswordForm({super.key});
+class ResetPasswordSuccessfulForm extends StatefulWidget {
+  const ResetPasswordSuccessfulForm({super.key});
 
   @override
-  State<ResetPasswordForm> createState() => _ResetPasswordFormState();
+  State<ResetPasswordSuccessfulForm> createState() =>
+      _ResetPasswordSuccessfulFormState();
 }
 
-class _ResetPasswordFormState extends State<ResetPasswordForm> {
-  final emailController = TextEditingController();
+class _ResetPasswordSuccessfulFormState
+    extends State<ResetPasswordSuccessfulForm> {
+  final passwordController = TextEditingController();
+  Color strengthColor = ThemeColor.warning.shade800;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -23,7 +25,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       builder: (context, sizingInfo) {
         return Center(
           child: SizedBox(
-            width: sizingInfo.isMobile ? size.width * 0.87 : size.width * 0.28,
+            width: sizingInfo.isMobile ? size.width * 0.87 : size.width * 0.29,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,43 +40,43 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // Padding(
+                      //   padding: EdgeInsets.only(bottom: 15.h),
+                      //   child: IconButton(
+                      //     onPressed: () => Nav.pop(context),
+                      //     padding: EdgeInsets.zero,
+                      //     constraints: const BoxConstraints(),
+                      //     icon: SvgPicture.asset("assets/arrow_left_back.svg"),
+                      //   ),
+                      // ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 15.h),
-                        child: IconButton(
-                          onPressed: () => Nav.pop(context),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                          icon: SvgPicture.asset("assets/arrow_left_back.svg"),
-                        ),
+                        padding: EdgeInsets.only(bottom: 25.h),
+                        child: SvgPicture.asset("assets/successful.svg"),
                       ),
                       Text(
-                        "Reset password",
+                        "Reset password successful",
                         style: TextStyle(
-                          fontSize: 32.sp,
+                          fontSize: 31.sp,
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff1C2634),
                         ),
                       ),
                       SizedBox(height: 10.h),
                       Text(
-                        "Input your email address account to receive a reset link",
+                        "Successfully changed password. you can enter the main page",
                         style: TextStyle(
                           fontSize: 14.sp,
                           color: ThemeColor.secondary.shade400,
                         ),
                       ),
                       SizedBox(height: 20.h),
-                      GlobalTextFiledCustomWidget(
-                        label: "Email",
-                        hint: "example@email.com",
-                        controller: emailController,
-                        obscureText: false,
-                      ),
                       GlobalButtonWidget(
-                        label: "Continue",
-                        onTap: () {},
+                        label: "Go to home",
+                        onTap: () {
+                          Nav.pop(context);
+                        },
                       ),
                     ],
                   ),
@@ -84,25 +86,6 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildDividerAndOrText() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
-      child: Row(
-        children: [
-          const Expanded(child: Divider()),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.w),
-            child: Text(
-              "or",
-              style: TextStyle(color: ThemeColor.secondary.shade400),
-            ),
-          ),
-          const Expanded(child: Divider()),
-        ],
-      ),
     );
   }
 }
