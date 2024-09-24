@@ -5,25 +5,31 @@ import 'package:flutter_svg/svg.dart';
 
 class GlobalAppBarButtonItemWidget extends StatelessWidget {
   final String svgIcon;
+  final double? size;
+  final EdgeInsetsDirectional? margin;
   final Function() onTap;
   const GlobalAppBarButtonItemWidget({
     super.key,
     required this.svgIcon,
     required this.onTap,
+    this.size,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 50.sp,
-      height: 50.sp,
-      child: Padding(
-        padding: const EdgeInsets.all(5),
+    return Padding(
+      padding: margin ?? const EdgeInsets.all(5),
+      child: SizedBox(
+        width: size ?? 50.sp,
+        height: size ?? 50.sp,
         child: ElevatedButton(
             onPressed: onTap,
             style: ElevatedButton.styleFrom(
               backgroundColor: ThemeColors.primary.shade50,
               padding: EdgeInsets.zero,
+              minimumSize: Size.zero, // Set this
+
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.r),
