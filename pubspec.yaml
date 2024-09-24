@@ -40,6 +40,12 @@ dependencies:
   dots_indicator: ^3.0.0
   carousel_slider: ^5.0.0
   password_strength_indicator: ^1.0.1
+  sidebar_with_animation:
+    git:
+      url: https://github.com/mutasimbalila/animated_side_bar.git
+      ref: main
+  dropdown_button2: ^2.3.9
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:

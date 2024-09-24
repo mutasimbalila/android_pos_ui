@@ -1,7 +1,7 @@
 import 'package:android_pos_ui/global_widgets/global_term_condition_privacy_policy_widget.dart';
-import 'package:android_pos_ui/views/login_view/widget/onboarding_image_widget.dart';
-import 'package:android_pos_ui/views/new_password/new_password_form.dart';
-import 'package:android_pos_ui/views/new_password/new_password_reset_successful_form.dart';
+import 'package:android_pos_ui/views/auth/login_view/widget/onboarding_image_widget.dart';
+import 'package:android_pos_ui/views/auth/new_password/new_password_form.dart';
+import 'package:android_pos_ui/views/auth/new_password/new_password_reset_successful_form.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 

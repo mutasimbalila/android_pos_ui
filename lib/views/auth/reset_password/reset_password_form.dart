@@ -1,8 +1,8 @@
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
-import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
-import 'package:android_pos_ui/views/new_password/new_password_view.dart';
+import 'package:android_pos_ui/views/auth/new_password/new_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -63,7 +63,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                         "Input your email address account to receive a reset link",
                         style: TextStyle(
                           fontSize: 14.sp,
-                          color: ThemeColor.secondary.shade400,
+                          color: ThemeColors.secondary.shade400,
                         ),
                       ),
                       SizedBox(height: 20.h),
@@ -100,7 +100,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
             padding: EdgeInsets.symmetric(horizontal: 8.w),
             child: Text(
               "or",
-              style: TextStyle(color: ThemeColor.secondary.shade400),
+              style: TextStyle(color: ThemeColors.secondary.shade400),
             ),
           ),
           const Expanded(child: Divider()),

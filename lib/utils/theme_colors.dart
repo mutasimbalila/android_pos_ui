@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ThemeColor {
+class ThemeColors {
 //Primary Neutral Palette
   static MaterialColor get primary => const MaterialColor(0xFFEA7E41, {
+        50: Color(0xffFFFFFF),
         100: Color(0xffFDEFD9),
         200: Color(0xffFCDBB3),
         300: Color(0xffF8C18C),

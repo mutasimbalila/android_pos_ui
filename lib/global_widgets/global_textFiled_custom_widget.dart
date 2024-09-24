@@ -1,4 +1,4 @@
-import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,7 +35,7 @@ class _GlobalTextFiledCustomWidgetState
         controller: widget.controller,
         onChanged: widget.onChanged,
         style: TextStyle(
-          color: ThemeColor.secondary.shade500,
+          color: ThemeColors.secondary.shade500,
           height: 1,
         ),
         decoration: InputDecoration(
@@ -45,21 +45,21 @@ class _GlobalTextFiledCustomWidgetState
           labelStyle: TextStyle(
             // fontWeight: FontWeight.w500,
             fontSize: 18.sp,
-            color: ThemeColor.secondary.shade300,
+            color: ThemeColors.secondary.shade300,
           ),
           hintText: widget.hint,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.r)),
             borderSide: BorderSide(
-              color: ThemeColor.secondary.shade200,
+              color: ThemeColors.secondary.shade200,
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.r)),
             borderSide: BorderSide(
-              color: ThemeColor.secondary.shade200,
+              color: ThemeColors.secondary.shade200,
               width: 1,
             ),
           ),
@@ -72,7 +72,7 @@ class _GlobalTextFiledCustomWidgetState
                   icon: SvgPicture.asset(
                     "assets/${obscureState ? "visibility_on" : "visibility_off"}.svg",
                     colorFilter: ColorFilter.mode(
-                      ThemeColor.secondary.shade500,
+                      ThemeColors.secondary.shade500,
                       BlendMode.dstIn,
                     ),
                   ),

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:android_pos_ui/views/login_view/login_view.dart';
+import 'package:android_pos_ui/views/auth/login_view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

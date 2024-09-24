@@ -1,4 +1,4 @@
-import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +23,7 @@ class _CheckBoxCustomWidgetState extends State<CheckBoxCustomWidget> {
     return Row(
       children: [
         Checkbox(
-          activeColor: ThemeColor.success,
+          activeColor: ThemeColors.success,
           value: checkStatus,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4.r),
@@ -38,7 +38,7 @@ class _CheckBoxCustomWidgetState extends State<CheckBoxCustomWidget> {
         Text(
           widget.label,
           style: TextStyle(
-            color: ThemeColor.secondary.shade400,
+            color: ThemeColors.secondary.shade400,
           ),
         ),
       ],

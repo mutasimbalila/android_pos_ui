@@ -1,4 +1,4 @@
-import 'package:android_pos_ui/utils/colors.dart';
+import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +39,7 @@ class GlobalTermConditionPrivacyPolicyWidget extends StatelessWidget {
     return Text(
       "© 2024 Posive. All rights reserved.",
       style: TextStyle(
-        color: ThemeColor.secondary.shade400,
+        color: ThemeColors.secondary.shade400,
         fontSize: 13.sp,
         fontWeight: FontWeight.w400,
       ),
@@ -57,7 +57,7 @@ class GlobalTermConditionPrivacyPolicyWidget extends StatelessWidget {
               text: "Term & Condition",
               recognizer: TapGestureRecognizer()..onTap = () => {},
               style: TextStyle(
-                color: ThemeColor.information,
+                color: ThemeColors.information,
                 fontWeight: FontWeight.bold,
                 fontSize: 13.sp,
               ),
@@ -66,7 +66,7 @@ class GlobalTermConditionPrivacyPolicyWidget extends StatelessWidget {
           Container(
             width: 1,
             margin: EdgeInsets.symmetric(horizontal: 10.w),
-            color: ThemeColor.secondary.shade300,
+            color: ThemeColors.secondary.shade300,
             height: 21.h,
           ),
           RichText(
@@ -74,7 +74,7 @@ class GlobalTermConditionPrivacyPolicyWidget extends StatelessWidget {
               text: "Privacy & Policy",
               recognizer: TapGestureRecognizer()..onTap = () => {},
               style: TextStyle(
-                color: ThemeColor.information,
+                color: ThemeColors.information,
                 fontWeight: FontWeight.bold,
                 fontSize: 13.sp,
               ),
