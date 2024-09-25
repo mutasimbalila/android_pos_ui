@@ -1,4 +1,3 @@
-import 'package:android_pos_ui/global_widgets/global_app_bar_button_item_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_app_bar_mobile.dart';
 import 'package:android_pos_ui/global_widgets/global_sidebar_drawer_widget.dart';
 import 'package:android_pos_ui/views/tabs_views/pos_tab/pos_tab_view.dart';
@@ -30,25 +29,7 @@ class _TabsControllerViewState extends State<TabsControllerView> {
               ? const GlobalAppBarMobile()
               :
 
-              // AppBar(
-              //                 backgroundColor: Colors.transparent,
-              //                 elevation: 0,
-              // leading: GlobalAppBarButtonItemWidget(
-              //   svgIcon: "assets/menu_icon.svg",
-              //   onTap: () {},
-              // ),
-              //                 actions: [
-              //                   GlobalAppBarButtonItemWidget(
-              //                     svgIcon: "assets/search_icon.svg",
-              //                     onTap: () {},
-              //                   ),
-              //                   GlobalAppBarButtonItemWidget(
-              //                     svgIcon: "assets/filter_icon.svg",
-              //                     onTap: () {},
-              //                   ),
-              //                 ],
-              //               )
-              //             :
+              
               null,
           backgroundColor: const Color(0xffF6F8F9),
           body: Row(

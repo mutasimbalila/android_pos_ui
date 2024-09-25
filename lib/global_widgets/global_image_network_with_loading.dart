@@ -6,11 +6,11 @@ Widget globalCashedImageNetworkWithLoading(String imageUrl,
     {Key? key,
     double? height,
     double? width,
-    double? radius,
+    BorderRadiusGeometry? radius,
     BoxFit? fit,
     bool showNotFoundImage = true}) {
   return ClipRRect(
-    borderRadius: BorderRadius.circular(radius ?? 8.r),
+    borderRadius: radius ?? BorderRadius.circular(8.r),
     child: CachedNetworkImage(
       height: height,
       width: width,
@@ -26,7 +26,7 @@ Widget globalCashedImageNetworkWithLoading(String imageUrl,
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius ?? 8.r),
+                  borderRadius: radius ?? BorderRadius.circular(8.r),
                   color: Colors.white, //isDarkMode ? Colors.grey.shade900 :
                 ),
                 child: Column(
@@ -54,7 +54,7 @@ Widget globalCashedImageNetworkWithLoading(String imageUrl,
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(radius ?? 8.r),
+                  borderRadius: radius ?? BorderRadius.circular(8.r),
                   color: Colors.white, //isDarkMode ? Colors.grey.shade900 :
                 ),
                 child: const Center(

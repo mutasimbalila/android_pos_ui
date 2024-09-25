@@ -23,6 +23,7 @@ class GlobalSideBarDrawerWidget extends StatelessWidget {
       selectedColor: ThemeColors.primary,
       minimizeIcon: Icons.menu,
       expandIcon: Icons.menu,
+
       unSelectedTextColor: ThemeColors.secondary.shade400,
       unselectedIconColor: ThemeColors.secondary.shade400,
       minimizeButtonColor: ThemeColors.secondary.shade400,
@@ -30,7 +31,7 @@ class GlobalSideBarDrawerWidget extends StatelessWidget {
       hoverColor: ThemeColors.secondary.shade100,
       // dividerColor: Colors.red,
       splashColor: ThemeColors.primary,
-      sideBarWidth: 220.w,
+      sideBarWidth: 200.w,
       settingsDivider: false,
 
       topWidgetExpanded: SvgPicture.asset("assets/logo.svg"),
