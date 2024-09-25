@@ -1,14 +1,11 @@
 import 'package:android_pos_ui/global_widgets/global_app_bar_button_item_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_app_bar_desktop.dart';
 import 'package:android_pos_ui/global_widgets/global_category_list_bar_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_counter_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_image_network_with_loading.dart';
-import 'package:android_pos_ui/global_widgets/global_item_cart_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_item_widget.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
+import 'package:android_pos_ui/views/tabs_views/pos_tab/order_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:standard_searchbar/old/standard_searchbar.dart';
 
 class PosDesktopTabView extends StatefulWidget {
@@ -22,7 +19,6 @@ class _PosDesktopTabViewState extends State<PosDesktopTabView> {
   int selectedItem = -1;
   @override
   Widget build(BuildContext context) {
-    final selectedList = itemsDummyList.where((e) => e.isSelected).toList();
     return Row(
       children: [
         Expanded(
@@ -67,74 +63,14 @@ class _PosDesktopTabViewState extends State<PosDesktopTabView> {
             ),
           ),
         ),
-        Container(
-          color: ThemeColors.primary.shade50,
-          width: 340.w,
-          padding: EdgeInsets.all(15.sp),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GlobalAppBarDeskTop(
-                title: "William Defoe",
-                subTitle: "#12132312",
-                titleFontSize: 18.sp,
-                subTitleFontSize: 14.sp,
-                trailing: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GlobalCategoryListBarWidget(
-                      list: [
-                        Category("Dine in", null),
-                        Category("Take away", null)
-                      ],
-                      showSmallWidget: true,
-                    ),
-                  ],
-                ),
-              ),
-              Divider(height: 20.h, color: ThemeColors.secondary.shade200),
-              _buildSectionTitle(text: "Where will you eat :"),
-              GlobalCategoryListBarWidget(
-                list: [
-                  Category("Indoor", Icons.other_houses),
-                  Category("Outdoor", Icons.camera_outdoor)
-                ],
-                showSmallWidget: true,
-                expandItem: true,
-              ),
-              _buildSectionTitle(
-                  text: "Your order :",
-                  padding: EdgeInsets.only(bottom: 12.sp)),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: selectedList.length,
-                  itemBuilder: (context, index) => GlobalItemCartWidget(
-                    model: selectedList[index],
-                    onRemoveItem: () {
-                      selectedList[index].isSelected = false;
-                      setState(() {});
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
+        OrderDetailsView(
+          itemsDummyList: itemsDummyList,
+          onUnSelect: (p0) {
+            itemsDummyList[p0].isSelected = false;
+            setState(() {});
+          },
         )
       ],
-    );
-  }
-
-  Widget _buildSectionTitle(
-      {required String text, EdgeInsetsGeometry padding = EdgeInsets.zero}) {
-    return Padding(
-      padding: padding,
-      child: Text(
-        text,
-        style: TextStyle(
-          color: ThemeColors.secondary.shade400,
-          fontSize: 14.sp,
-        ),
-      ),
     );
   }
 
