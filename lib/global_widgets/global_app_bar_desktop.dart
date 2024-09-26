@@ -5,9 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GlobalAppBarDeskTop extends StatelessWidget {
   final String title;
   final String subTitle;
-  final Widget trailing;
+  final Widget? trailing;
   final double? titleFontSize;
   final double? subTitleFontSize;
+  final EdgeInsetsDirectional? margin;
   const GlobalAppBarDeskTop({
     super.key,
     required this.title,
@@ -15,12 +16,13 @@ class GlobalAppBarDeskTop extends StatelessWidget {
     required this.trailing,
     this.titleFontSize,
     this.subTitleFontSize,
+    this.margin,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 15.h),
+      padding: margin ?? EdgeInsets.only(bottom: 15.h),
       child: ListTile(
           // dense: true,
           contentPadding: EdgeInsets.zero,

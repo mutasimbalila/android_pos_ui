@@ -5,36 +5,51 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GlobalButtonWidget extends StatelessWidget {
   final String label;
   final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? textColor;
   final Function() onTap;
   final double? width;
+  final Widget? icon;
+  final EdgeInsetsGeometry? margin;
   const GlobalButtonWidget(
       {super.key,
       required this.label,
       required this.onTap,
       this.width,
-      this.backgroundColor});
+      this.backgroundColor,
+      this.borderColor,
+      this.textColor,
+      this.margin,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.h),
+      padding: margin ?? EdgeInsets.symmetric(vertical: 10.h),
       child: SizedBox(
         width: width ?? double.infinity,
         height: 50.h,
-        child: ElevatedButton(
+        child: ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
             elevation: 0.5,
-            backgroundColor: ThemeColors.primary,
+            backgroundColor: backgroundColor ?? ThemeColors.primary,
             shape: RoundedRectangleBorder(
               side: BorderSide(
-                color: backgroundColor ??
+                color: borderColor ??
                     ThemeColors.primary.shade600.withOpacity(0.8),
               ),
               borderRadius: BorderRadius.circular(10.r),
             ),
           ),
           onPressed: onTap,
-          child: Text(label),
+          icon: icon,
+          label: Text(
+            label,
+            style: TextStyle(
+              color: textColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );

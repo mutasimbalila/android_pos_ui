@@ -9,6 +9,7 @@ class GlobalTextFiledCustomWidget extends StatefulWidget {
   final TextEditingController controller;
   final Function(String)? onChanged;
   final bool obscureText;
+  final Widget? prefixIcon;
 
   const GlobalTextFiledCustomWidget({
     super.key,
@@ -17,6 +18,7 @@ class GlobalTextFiledCustomWidget extends StatefulWidget {
     required this.controller,
     this.obscureText = false,
     this.onChanged,
+    this.prefixIcon,
   });
 
   @override
@@ -36,7 +38,7 @@ class _GlobalTextFiledCustomWidgetState
         onChanged: widget.onChanged,
         style: TextStyle(
           color: ThemeColors.secondary.shade500,
-          height: 1,
+          height: 1.5,
         ),
         decoration: InputDecoration(
           labelText: widget.label,
@@ -63,6 +65,7 @@ class _GlobalTextFiledCustomWidgetState
               width: 1,
             ),
           ),
+          prefixIcon: widget.prefixIcon,
           suffixIcon: widget.obscureText
               ? IconButton(
                   onPressed: () {

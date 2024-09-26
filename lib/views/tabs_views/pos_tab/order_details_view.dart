@@ -1,12 +1,18 @@
+import 'package:android_pos_ui/dialogs/order_completed_dialog.dart';
+import 'package:android_pos_ui/global_widgets/global_app_bar_button_item_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_app_bar_desktop.dart';
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_category_list_bar_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_invoice_total_item.dart';
 import 'package:android_pos_ui/global_widgets/global_item_cart_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_item_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_payment_method_bar_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
+import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class OrderDetailsView extends StatefulWidget {
   final List<ItemModel> itemsDummyList;
@@ -19,138 +25,185 @@ class OrderDetailsView extends StatefulWidget {
 }
 
 class _OrderDetailsViewState extends State<OrderDetailsView> {
+  final customerController = TextEditingController(text: "William Defoe");
+
   @override
   Widget build(BuildContext context) {
     final selectedList =
-        widget.itemsDummyList.where((e) => e.isSelected).toList();
+        widget.itemsDummyList.where((e) => !e.isSelected).toList();
 
-    return SafeArea(
-      child: Container(
-        color: ThemeColors.primary.shade50,
-        width: 340.w,
-        padding: EdgeInsets.all(15.sp),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GlobalAppBarDeskTop(
-              title: "William Defoe",
-              subTitle: "#12132312",
-              titleFontSize: 18.sp,
-              subTitleFontSize: 14.sp,
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GlobalCategoryListBarWidget(
-                    list: [
-                      Category("Dine in", null),
-                      Category("Take away", null)
-                    ],
-                    showSmallWidget: true,
-                  ),
-                ],
+    return ResponsiveBuilder(
+      builder: (BuildContext context, SizingInformation sizingInfo) {
+        return Container(
+          color: ThemeColors.primary.shade50,
+          width: sizingInfo.isMobile ? null : 340.w,
+          padding: EdgeInsetsDirectional.fromSTEB(15.sp, 5.sp, 15.sp, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              sizingInfo.isMobile
+                  ? _buildMobileAppBar(context)
+                  : _buildDeskTopAppBar(),
+
+              GlobalTextFiledCustomWidget(
+                label: "Customer Name",
+                hint: "Customer Name",
+                controller: customerController,
+                prefixIcon: IconButton(
+                    onPressed: null,
+                    icon: SvgPicture.asset("assets/person_icon.svg")),
               ),
-            ),
-            Divider(height: 20.h, color: ThemeColors.secondary.shade200),
-            _buildSectionTitle(
-              text: "Where will you eat :",
-              padding: EdgeInsets.zero,
-            ),
-            GlobalCategoryListBarWidget(
-              list: [
-                Category("Indoor", Icons.other_houses),
-                Category("Outdoor", Icons.camera_outdoor)
-              ],
-              showSmallWidget: true,
-              expandItem: true,
-            ),
-            _buildSectionTitle(text: "Your order :"),
-            Expanded(
-              child: ListView.builder(
-                itemCount: selectedList.length,
-                itemBuilder: (context, index) => GlobalItemCartWidget(
-                  model: selectedList[index],
-                  onRemoveItem: () {
-                    final idx =
-                        widget.itemsDummyList.indexOf(selectedList[index]);
-                    widget.onUnSelect(idx);
-                    setState(() {});
-                  },
+              // _buildSectionTitle(
+              //   text: "Where will you eat :",
+              //   padding: EdgeInsets.zero,
+              // ),
+              // GlobalCategoryListBarWidget(
+              //   list: [
+              //     Category("Indoor", Icons.other_houses),
+              //     Category("Outdoor", Icons.camera_outdoor)
+              //   ],
+              //   showSmallWidget: true,
+              //   expandItem: true,
+              // ),
+              _buildSectionTitle(text: "Your order :"),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: selectedList.length,
+                  itemBuilder: (context, index) => GlobalItemCartWidget(
+                    model: selectedList[index],
+                    index: index,
+                    showImage: false,
+                    onRemoveItem: () {
+                      final idx =
+                          widget.itemsDummyList.indexOf(selectedList[index]);
+                      widget.onUnSelect(idx);
+                      setState(() {});
+                    },
+                  ),
                 ),
               ),
-            ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 5.h),
-              margin: const EdgeInsets.symmetric(vertical: 15),
-              decoration: BoxDecoration(
-                border: Border.all(color: ThemeColors.secondary.shade200),
-                borderRadius: BorderRadius.circular(7.r),
-              ),
-              child: Column(
-                children: [
-                  _buildInvoiceTotalItem(
-                    label: "Subtotal (2)",
-                    value: "\$32.99",
-                  ),
-                  _buildInvoiceTotalItem(
-                    label: "Service Tax",
-                    value: "\$2.00",
-                  ),
-                  Divider(color: ThemeColors.secondary.shade200),
-                  _buildInvoiceTotalItem(
-                    label: "Total payment",
-                    value: "\$34.99",
-                    labelStyle: TextStyle(
-                      color: ThemeColors.secondary,
-                      fontSize: 14.sp,
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 5.h),
+                margin: const EdgeInsets.symmetric(vertical: 15),
+                decoration: BoxDecoration(
+                  border: Border.all(color: ThemeColors.secondary.shade200),
+                  borderRadius: BorderRadius.circular(7.r),
+                ),
+                child: Column(
+                  children: [
+                    const GlobalInvoiceTotalItem(
+                      label: "Subtotal (2)",
+                      value: "\$32.99",
                     ),
-                    valueStyle: TextStyle(
-                      color: ThemeColors.secondary,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
+                    const GlobalInvoiceTotalItem(
+                      label: "Service Tax",
+                      value: "\$2.00",
                     ),
-                  ),
-                ],
+                    Divider(color: ThemeColors.secondary.shade200),
+                    GlobalInvoiceTotalItem(
+                      label: "Total payment",
+                      value: "\$34.99",
+                      labelStyle: TextStyle(
+                        color: ThemeColors.secondary,
+                        fontSize: 14.sp,
+                      ),
+                      valueStyle: TextStyle(
+                        color: ThemeColors.secondary,
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            _buildSectionTitle(text: "Payment method:"),
-            const GlobalPaymentMethodBar(),
-            GlobalButtonWidget(
-              label: "Make Order",
-              onTap: () {},
-            )
-          ],
-        ),
-      ),
+              _buildSectionTitle(text: "Payment method:"),
+              const GlobalPaymentMethodBar(),
+              GlobalButtonWidget(
+                label: "Make Order",
+                onTap: () {
+                  Nav.showDialogs(context, const OrderCompletedDialog());
+                },
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 
-  ListTile _buildInvoiceTotalItem({
-    required String label,
-    required String value,
-    TextStyle? labelStyle,
-    TextStyle? valueStyle,
-  }) {
-    return ListTile(
-      visualDensity: const VisualDensity(vertical: -4, horizontal: 0),
-      minVerticalPadding: 0,
-      dense: true,
-      title: Text(
-        label,
-        style: labelStyle ??
-            TextStyle(
-              color: ThemeColors.secondary.shade400,
-              fontSize: 14.sp,
+  Column _buildDeskTopAppBar() {
+    return Column(
+      children: [
+        GlobalAppBarDeskTop(
+          title: "Current Order",
+          subTitle: "#12132312",
+          titleFontSize: 18.sp,
+          subTitleFontSize: 14.sp,
+          margin: EdgeInsetsDirectional.zero,
+          trailing: GlobalAppBarButtonItemWidget(
+            svgIcon: "assets/setting_icons_2.svg",
+            onTap: () {},
+            size: 45.sp,
+            margin: EdgeInsetsDirectional.zero,
+          ),
+        ),
+        Divider(height: 20.h, color: ThemeColors.secondary.shade200),
+      ],
+    );
+  }
+
+  AppBar _buildMobileAppBar(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: ThemeColors.primary.shade50,
+      centerTitle: true,
+      leading: Row(
+        children: [
+          GlobalAppBarButtonItemWidget(
+            svgIcon: "assets/arrow_left_back.svg",
+            margin: EdgeInsetsDirectional.zero,
+            size: 45.sp,
+            onTap: () {
+              Nav.pop(context);
+            },
+          ),
+        ],
+      ),
+      title: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Current Order",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16.sp,
+              color: ThemeColors.secondary,
             ),
+          ),
+          Text(
+            "#12132312",
+            style: TextStyle(
+              fontSize: 12.sp,
+              color: ThemeColors.secondary.shade400,
+            ),
+          ),
+        ],
       ),
-      trailing: Text(
-        value,
-        style: valueStyle ??
-            TextStyle(
-                color: ThemeColors.secondary,
-                fontWeight: FontWeight.w600,
-                fontSize: 14.sp),
-      ),
+      actions: [
+        Row(
+          children: [
+            GlobalAppBarButtonItemWidget(
+              svgIcon: "assets/setting_icons_2.svg",
+              onTap: () {},
+              size: 45.sp,
+              margin: EdgeInsetsDirectional.zero,
+
+              // margin: EdgeInsetsDirectional.only(end: 5.w),
+            ),
+          ],
+        ),
+      ],
     );
   }
 

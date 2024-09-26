@@ -10,6 +10,7 @@ class GlobalCategoryItemWidget extends StatelessWidget {
   final Category category;
   final bool isSelected;
   final bool showSmallWidget;
+  final bool fillSelectionColor;
   final Function() onItemSelected;
   const GlobalCategoryItemWidget({
     super.key,
@@ -17,6 +18,7 @@ class GlobalCategoryItemWidget extends StatelessWidget {
     required this.onItemSelected,
     required this.isSelected,
     required this.showSmallWidget,
+    required this.fillSelectionColor,
   });
 
   @override
@@ -26,6 +28,7 @@ class GlobalCategoryItemWidget extends StatelessWidget {
         return Container(
           width: (showSmallWidget || sizingInfo.isMobile) ? null : 165.sp,
           height: (showSmallWidget || sizingInfo.isMobile) ? null : 60.w,
+          padding: EdgeInsets.zero,
           margin: EdgeInsetsDirectional.only(end: 10.w),
           decoration: BoxDecoration(
             color: ThemeColors.primary.shade50,
@@ -36,7 +39,9 @@ class GlobalCategoryItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(7.r),
           ),
           child: Material(
-            borderRadius: BorderRadius.circular(7.r),
+            borderRadius: BorderRadius.circular(6.r),
+            color:
+                (fillSelectionColor && isSelected) ? ThemeColors.primary : null,
             child: InkWell(
               onTap: () {
                 onItemSelected();
@@ -78,7 +83,11 @@ class GlobalCategoryItemWidget extends StatelessWidget {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 14.sp,
-            color: isSelected ? ThemeColors.primary : ThemeColors.secondary,
+            color: (fillSelectionColor && isSelected)
+                ? ThemeColors.primary.shade50
+                : isSelected
+                    ? ThemeColors.primary
+                    : ThemeColors.secondary,
           ),
         ),
         if (showItemCount)
@@ -99,8 +108,11 @@ class GlobalCategoryItemWidget extends StatelessWidget {
       child: Icon(
         category.icon,
         size: 20.sp,
-        color:
-            isSelected ? ThemeColors.primary : ThemeColors.secondary.shade500,
+        color: (fillSelectionColor && isSelected)
+            ? ThemeColors.primary.shade50
+            : isSelected
+                ? ThemeColors.primary
+                : ThemeColors.secondary.shade500,
       ),
     );
   }

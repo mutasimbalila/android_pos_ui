@@ -27,7 +27,7 @@ class _GlobalPaymentMethodBarState extends State<GlobalPaymentMethodBar> {
         return Align(
           alignment: AlignmentDirectional.centerStart,
           child: SizedBox(
-              height: sizingInformation.isMobile ? 40.sp : 80.h,
+              height: 80.sp,
               child: Row(
                 children: List.generate(
                   paymentMethod.length,
