@@ -43,7 +43,7 @@ class GlobalAppBarButtonItemWidget extends StatelessWidget {
                 ThemeColors.secondary.shade500,
                 BlendMode.srcIn,
               ),
-              width: 18.sp,
+              width: 17.sp,
             )),
       ),
     );

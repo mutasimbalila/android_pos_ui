@@ -3,8 +3,8 @@ import 'package:android_pos_ui/global_widgets/global_app_bar_button_item_widget.
 import 'package:android_pos_ui/global_widgets/global_app_bar_desktop.dart';
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_invoice_total_item.dart';
-import 'package:android_pos_ui/global_widgets/global_item_cart_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_item_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_product_cart_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_payment_method_bar_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
@@ -14,17 +14,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class OrderDetailsView extends StatefulWidget {
+class OrderCreateDetailsView extends StatefulWidget {
   final List<ItemModel> itemsDummyList;
   final Function(int) onUnSelect;
-  const OrderDetailsView(
+  const OrderCreateDetailsView(
       {super.key, required this.itemsDummyList, required this.onUnSelect});
 
   @override
-  State<OrderDetailsView> createState() => _OrderDetailsViewState();
+  State<OrderCreateDetailsView> createState() => _OrderCreateDetailsViewState();
 }
 
-class _OrderDetailsViewState extends State<OrderDetailsView> {
+class _OrderCreateDetailsViewState extends State<OrderCreateDetailsView> {
   final customerController = TextEditingController(text: "William Defoe");
 
   @override
@@ -36,7 +36,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
       builder: (BuildContext context, SizingInformation sizingInfo) {
         return Container(
           color: ThemeColors.primary.shade50,
-          width: sizingInfo.isMobile ? null : 340.w,
+          width: sizingInfo.isMobile ? null : 440.w,
           padding: EdgeInsetsDirectional.fromSTEB(15.sp, 5.sp, 15.sp, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class _OrderDetailsViewState extends State<OrderDetailsView> {
               Expanded(
                 child: ListView.builder(
                   itemCount: selectedList.length,
-                  itemBuilder: (context, index) => GlobalItemCartWidget(
+                  itemBuilder: (context, index) => GlobalProductCartWidget(
                     model: selectedList[index],
                     index: index,
                     showImage: false,

@@ -47,6 +47,8 @@ dependencies:
   dropdown_button2: ^2.3.9
   cached_network_image: ^3.4.1
   standard_searchbar: ^2.1.1
+  syncfusion_flutter_datagrid: ^27.1.50
+  syncfusion_flutter_core: ^27.1.50
 
 dev_dependencies:
   flutter_test:

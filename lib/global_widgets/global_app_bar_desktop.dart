@@ -8,6 +8,7 @@ class GlobalAppBarDeskTop extends StatelessWidget {
   final Widget? trailing;
   final double? titleFontSize;
   final double? subTitleFontSize;
+  final bool horizontalTitleAndSub;
   final EdgeInsetsDirectional? margin;
   const GlobalAppBarDeskTop({
     super.key,
@@ -17,6 +18,7 @@ class GlobalAppBarDeskTop extends StatelessWidget {
     this.titleFontSize,
     this.subTitleFontSize,
     this.margin,
+    this.horizontalTitleAndSub = false,
   });
 
   @override
@@ -34,14 +36,22 @@ class GlobalAppBarDeskTop extends StatelessWidget {
               color: ThemeColors.secondary,
             ),
           ),
-          subtitle: Text(
-            subTitle,
-            style: TextStyle(
-              fontSize: subTitleFontSize ?? 14.sp,
-              color: ThemeColors.secondary.shade400,
-            ),
-          ),
-          trailing: trailing),
+          subtitle: horizontalTitleAndSub && trailing == null
+              ? null
+              : _buildSubtitle(),
+          trailing: horizontalTitleAndSub && trailing == null
+              ? _buildSubtitle()
+              : trailing),
+    );
+  }
+
+  Text _buildSubtitle() {
+    return Text(
+      subTitle,
+      style: TextStyle(
+        fontSize: subTitleFontSize ?? 14.sp,
+        color: ThemeColors.secondary.shade400,
+      ),
     );
   }
 }

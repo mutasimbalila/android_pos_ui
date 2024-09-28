@@ -28,6 +28,17 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'POS',
             theme: ThemeData(
+              checkboxTheme: CheckboxThemeData(
+                  fillColor: WidgetStateProperty.resolveWith(
+                    (states) {
+                      if (states.contains(WidgetState.selected)) {
+                        return ThemeColors.primary;
+                      }
+                      return Colors.white;
+                    },
+                  ),
+                  side: BorderSide(color: ThemeColors.secondary.shade300),
+                  visualDensity: const VisualDensity(horizontal: -4)),
               primaryColor: ThemeColors.primary,
               colorScheme: ColorScheme.fromSeed(seedColor: ThemeColors.primary),
               useMaterial3: false,

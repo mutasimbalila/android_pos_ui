@@ -1,17 +1,17 @@
 import 'package:android_pos_ui/global_widgets/global_counter_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_image_network_with_loading.dart';
-import 'package:android_pos_ui/global_widgets/global_item_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class GlobalItemCartWidget extends StatefulWidget {
+class GlobalProductCartWidget extends StatefulWidget {
   final ItemModel model;
   final int index;
   final Function() onRemoveItem;
   final bool showImage;
-  const GlobalItemCartWidget(
+  const GlobalProductCartWidget(
       {super.key,
       required this.model,
       required this.onRemoveItem,
@@ -19,10 +19,11 @@ class GlobalItemCartWidget extends StatefulWidget {
       required this.index});
 
   @override
-  State<GlobalItemCartWidget> createState() => _GlobalItemCartWidgetState();
+  State<GlobalProductCartWidget> createState() =>
+      _GlobalProductCartWidgetState();
 }
 
-class _GlobalItemCartWidgetState extends State<GlobalItemCartWidget> {
+class _GlobalProductCartWidgetState extends State<GlobalProductCartWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(

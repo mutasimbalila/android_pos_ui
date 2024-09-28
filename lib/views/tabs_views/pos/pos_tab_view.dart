@@ -1,5 +1,5 @@
-import 'package:android_pos_ui/views/tabs_views/pos_tab/pos_desktop_tab_view.dart';
-import 'package:android_pos_ui/views/tabs_views/pos_tab/pos_mobile_tab_view.dart';
+import 'package:android_pos_ui/views/tabs_views/pos/pos_desktop_tab_view.dart';
+import 'package:android_pos_ui/views/tabs_views/pos/pos_mobile_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
