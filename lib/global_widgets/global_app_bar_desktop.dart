@@ -10,6 +10,7 @@ class GlobalAppBarDeskTop extends StatelessWidget {
   final double? subTitleFontSize;
   final bool horizontalTitleAndSub;
   final EdgeInsetsDirectional? margin;
+  final double? width;
   const GlobalAppBarDeskTop({
     super.key,
     required this.title,
@@ -19,29 +20,33 @@ class GlobalAppBarDeskTop extends StatelessWidget {
     this.subTitleFontSize,
     this.margin,
     this.horizontalTitleAndSub = false,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? EdgeInsets.only(bottom: 15.h),
-      child: ListTile(
-          // dense: true,
-          contentPadding: EdgeInsets.zero,
-          title: Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: titleFontSize ?? 24.sp,
-              color: ThemeColors.secondary,
+    return SizedBox(
+      width: width,
+      child: Padding(
+        padding: margin ?? EdgeInsets.only(bottom: 15.h),
+        child: ListTile(
+            // dense: true,
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: titleFontSize ?? 24.sp,
+                color: ThemeColors.secondary,
+              ),
             ),
-          ),
-          subtitle: horizontalTitleAndSub && trailing == null
-              ? null
-              : _buildSubtitle(),
-          trailing: horizontalTitleAndSub && trailing == null
-              ? _buildSubtitle()
-              : trailing),
+            subtitle: horizontalTitleAndSub && trailing == null
+                ? null
+                : _buildSubtitle(),
+            trailing: horizontalTitleAndSub && trailing == null
+                ? _buildSubtitle()
+                : trailing),
+      ),
     );
   }
 

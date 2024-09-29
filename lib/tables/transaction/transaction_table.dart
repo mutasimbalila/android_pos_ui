@@ -1,5 +1,7 @@
+import 'package:android_pos_ui/dialogs/transaction_details_dialog.dart';
 import 'package:android_pos_ui/tables/table_components.dart';
 import 'package:android_pos_ui/tables/transaction/transaction_data_source.dart';
+import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,14 +15,17 @@ const double _dataPagerHeight = 60.0;
 List<TransactionDummy> paginatedTransactions = [];
 
 class TransactionTable extends StatefulWidget {
-  const TransactionTable({super.key});
+  //this key used for exporting table to pdf or excel
+  final GlobalKey<SfDataGridState> tableKey;
+  const TransactionTable({super.key, required this.tableKey});
 
   @override
   State<TransactionTable> createState() => _TransactionTableState();
 }
 
 class _TransactionTableState extends State<TransactionTable> {
-  final TransactionDataSource _dataSource = TransactionDataSource();
+  late final TransactionDataSource _dataSource =
+      TransactionDataSource(onActionsTapped: _tableActions);
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +42,7 @@ class _TransactionTableState extends State<TransactionTable> {
               // selectionColor: ThemeColors.primary.shade200,
             ),
             child: SfDataGrid(
+              key: widget.tableKey,
               source: _dataSource,
               showCheckboxColumn: true,
 
@@ -66,14 +72,15 @@ class _TransactionTableState extends State<TransactionTable> {
                   width: 110.sp,
                 ),
                 tableHeaderColumn(
-                  columnName: "receipt_no",
+                  columnName: "Receipt No",
                   label: "Receipt No",
                   width: 116.sp,
                 ),
                 tableHeaderColumn(
-                  columnName: "menu",
+                  columnName: "Menu",
                   label: "Menu",
-                  width: 180.sp,
+                  // width: 180.sp,
+                  columnWidthMode: ColumnWidthMode.fill,
                 ),
                 tableHeaderColumn(
                   columnName: "Collected/Cashier",
@@ -83,7 +90,8 @@ class _TransactionTableState extends State<TransactionTable> {
                 tableHeaderColumn(
                   columnName: "Date & Time",
                   label: "Date & Time",
-                  width: 200.sp,
+                  // width: 200.sp,
+                  columnWidthMode: ColumnWidthMode.fill,
                 ),
                 tableHeaderColumn(
                   columnName: "Payment method",
@@ -135,6 +143,12 @@ class _TransactionTableState extends State<TransactionTable> {
             )),
       ],
     );
+  }
+
+  _tableActions(TransactionDummy model, ActionType action) {
+    if (action == ActionType.view) {
+      Nav.showDialogs(context, TransactionDetailsDialog(model: model));
+    }
   }
 }
 

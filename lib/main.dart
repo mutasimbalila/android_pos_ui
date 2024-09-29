@@ -1,10 +1,19 @@
+import 'dart:io';
+
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:android_pos_ui/views/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:window_manager/window_manager.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+//|| Platform.isMacOS
+  if (Platform.isWindows) {
+    WindowManager.instance.setMinimumSize(const Size(1440, 900));
+  }
+
   runApp(const MyApp());
 }
 

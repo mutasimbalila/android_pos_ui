@@ -5,8 +5,15 @@ import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+enum ActionType {
+  view,
+  edit,
+  delete,
+}
+
 class TransactionDataSource extends DataGridSource {
-  TransactionDataSource() {
+  final Function(TransactionDummy, ActionType) onActionsTapped;
+  TransactionDataSource({required this.onActionsTapped}) {
     //TODO  move paging to controller
     paginatedTransactions =
         transactionsList.getRange(0, rowsPerPage).toList(growable: false);
@@ -69,30 +76,36 @@ class TransactionDataSource extends DataGridSource {
           columnName: 'Payment method',
           value: tableCellColoredStatusItem(dg.paymentMethod),
         ),
-        DataGridCell<Widget>(columnName: 'Action', value: _buildButtonsBar()),
+        DataGridCell<Widget>(columnName: 'Action', value: _buildButtonsBar(dg)),
       ]);
     }).toList(growable: false);
   }
 
-  Row _buildButtonsBar() {
+  Row _buildButtonsBar(TransactionDummy model) {
     return Row(
       children: [
         GlobalIconButton(
           svgIcon: "view_icon.svg",
           color: ThemeColors.success,
-          onTap: () {},
+          onTap: () {
+            onActionsTapped(model, ActionType.view);
+          },
         ),
         const SizedBox(width: 3),
         GlobalIconButton(
           svgIcon: "edit_icon.svg",
           color: ThemeColors.information,
-          onTap: () {},
+          onTap: () {
+            onActionsTapped(model, ActionType.edit);
+          },
         ),
         const SizedBox(width: 3),
         GlobalIconButton(
           svgIcon: "delete_icon.svg",
           color: ThemeColors.error,
-          onTap: () {},
+          onTap: () {
+            onActionsTapped(model, ActionType.delete);
+          },
         ),
       ],
     );

@@ -7,11 +7,13 @@ GridColumn tableHeaderColumn({
   required String columnName,
   required String label,
   double? width,
+  ColumnWidthMode? columnWidthMode,
   AlignmentGeometry? alignment,
 }) {
   return GridColumn(
     columnName: columnName,
     width: width ?? double.nan,
+    columnWidthMode: columnWidthMode ?? ColumnWidthMode.none,
     label: Container(
       // color: ThemeColors.tableHeaderColor,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -25,11 +27,11 @@ GridColumn tableHeaderColumn({
   );
 }
 
-Widget tableCellColoredStatusItem(String value) {
+Widget tableCellColoredStatusItem(String value, [double? width]) {
   return Container(
     alignment: Alignment.center,
     height: 27.sp,
-    width: double.infinity,
+    width: width ?? double.infinity,
     decoration: BoxDecoration(
       color: ThemeColors.secondary.shade100,
       borderRadius: BorderRadius.circular(4.r),

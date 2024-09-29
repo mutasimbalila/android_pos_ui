@@ -49,6 +49,11 @@ dependencies:
   standard_searchbar: ^2.1.1
   syncfusion_flutter_datagrid: ^27.1.50
   syncfusion_flutter_core: ^27.1.50
+  syncfusion_flutter_datagrid_export: ^27.1.50
+  syncfusion_flutter_xlsio: ^27.1.50
+  open_file: ^3.5.7
+  syncfusion_flutter_pdf: ^27.1.50
+  window_manager: ^0.4.2
 
 dev_dependencies:
   flutter_test:
