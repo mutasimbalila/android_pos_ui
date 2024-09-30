@@ -80,6 +80,8 @@ class ThemeColors {
         900: Color(0xff04070E)
       });
 
+  static const tableHeaderColor = Color(0xffF2F5F7);
+
   // //Error
   // static MaterialColor get success => const MaterialColor(0xFF, {
   //       100: Color(0xff),

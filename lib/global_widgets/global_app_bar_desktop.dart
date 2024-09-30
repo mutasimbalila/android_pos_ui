@@ -8,7 +8,9 @@ class GlobalAppBarDeskTop extends StatelessWidget {
   final Widget? trailing;
   final double? titleFontSize;
   final double? subTitleFontSize;
+  final bool horizontalTitleAndSub;
   final EdgeInsetsDirectional? margin;
+  final double? width;
   const GlobalAppBarDeskTop({
     super.key,
     required this.title,
@@ -17,31 +19,44 @@ class GlobalAppBarDeskTop extends StatelessWidget {
     this.titleFontSize,
     this.subTitleFontSize,
     this.margin,
+    this.horizontalTitleAndSub = false,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? EdgeInsets.only(bottom: 15.h),
-      child: ListTile(
-          // dense: true,
-          contentPadding: EdgeInsets.zero,
-          title: Text(
-            title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: titleFontSize ?? 24.sp,
-              color: ThemeColors.secondary,
+    return SizedBox(
+      width: width,
+      child: Padding(
+        padding: margin ?? EdgeInsets.only(bottom: 15.h),
+        child: ListTile(
+            // dense: true,
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: titleFontSize ?? 24.sp,
+                color: ThemeColors.secondary,
+              ),
             ),
-          ),
-          subtitle: Text(
-            subTitle,
-            style: TextStyle(
-              fontSize: subTitleFontSize ?? 14.sp,
-              color: ThemeColors.secondary.shade400,
-            ),
-          ),
-          trailing: trailing),
+            subtitle: horizontalTitleAndSub && trailing == null
+                ? null
+                : _buildSubtitle(),
+            trailing: horizontalTitleAndSub && trailing == null
+                ? _buildSubtitle()
+                : trailing),
+      ),
+    );
+  }
+
+  Text _buildSubtitle() {
+    return Text(
+      subTitle,
+      style: TextStyle(
+        fontSize: subTitleFontSize ?? 14.sp,
+        color: ThemeColors.secondary.shade400,
+      ),
     );
   }
 }

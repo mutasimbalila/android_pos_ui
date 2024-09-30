@@ -12,23 +12,29 @@ class GlobalAppBarMobile extends StatelessWidget
     return SafeArea(
       child: Container(
         color: ThemeColors.primary.shade50,
-        padding: EdgeInsets.symmetric(horizontal: 5.sp),
+        padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 5.h),
         child: SizedBox(
-          height: 105,
+          height: 80.h,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GlobalAppBarButtonItemWidget(
                 svgIcon: "assets/menu_icon.svg",
-                onTap: () {},
+                size: 45.sp,
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
               ),
               const Spacer(),
               GlobalAppBarButtonItemWidget(
                 svgIcon: "assets/search_icon.svg",
+                size: 45.sp,
                 onTap: () {},
               ),
               GlobalAppBarButtonItemWidget(
                 svgIcon: "assets/filter_icon.svg",
+                size: 45.sp,
                 onTap: () {},
               ),
             ],
@@ -39,5 +45,5 @@ class GlobalAppBarMobile extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => Size(double.infinity, 60.sp);
+  Size get preferredSize => Size(double.infinity, 70.sp);
 }

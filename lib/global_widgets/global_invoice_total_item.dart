@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GlobalInvoiceTotalItem extends StatelessWidget {
   final String label;
   final String value;
+  final Widget? valueWidget;
   final TextStyle? labelStyle;
   final TextStyle? valueStyle;
   const GlobalInvoiceTotalItem({
@@ -13,6 +14,7 @@ class GlobalInvoiceTotalItem extends StatelessWidget {
     required this.value,
     this.labelStyle,
     this.valueStyle,
+    this.valueWidget,
   });
 
   @override
@@ -29,14 +31,15 @@ class GlobalInvoiceTotalItem extends StatelessWidget {
               fontSize: 14.sp,
             ),
       ),
-      trailing: Text(
-        value,
-        style: valueStyle ??
-            TextStyle(
-                color: ThemeColors.secondary,
-                fontWeight: FontWeight.w600,
-                fontSize: 14.sp),
-      ),
+      trailing: valueWidget ??
+          Text(
+            value,
+            style: valueStyle ??
+                TextStyle(
+                    color: ThemeColors.secondary,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.sp),
+          ),
     );
   }
 }
