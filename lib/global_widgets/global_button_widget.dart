@@ -11,6 +11,7 @@ class GlobalButtonWidget extends StatelessWidget {
   final double? width;
   final double? height;
   final Widget? icon;
+  final IconAlignment iconAlignment;
   final EdgeInsetsGeometry? margin;
   const GlobalButtonWidget(
       {super.key,
@@ -22,7 +23,8 @@ class GlobalButtonWidget extends StatelessWidget {
       this.textColor,
       this.margin,
       this.icon,
-      this.height});
+      this.height,
+      this.iconAlignment = IconAlignment.start});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class GlobalButtonWidget extends StatelessWidget {
         width: width ?? double.infinity,
         height: height ?? 50.h,
         child: ElevatedButton.icon(
-          iconAlignment: IconAlignment.end,
+          iconAlignment: iconAlignment,
           style: ElevatedButton.styleFrom(
             elevation: 0.5,
             backgroundColor: backgroundColor ?? ThemeColors.primary,

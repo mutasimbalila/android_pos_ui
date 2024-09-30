@@ -69,7 +69,8 @@ class _OrderCreateDetailsViewState extends State<OrderCreateDetailsView> {
               Expanded(
                 child: ListView.builder(
                   itemCount: selectedList.length,
-                  itemBuilder: (context, index) => GlobalProductCartWidget(
+                  itemBuilder: (context, index) =>
+                      GlobalProductCartWidget(
                     model: selectedList[index],
                     index: index,
                     showImage: false,

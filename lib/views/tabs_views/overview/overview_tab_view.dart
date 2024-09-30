@@ -51,6 +51,7 @@ class _OverviewTabViewState extends State<OverviewTabView> {
                           label: "Export",
                           width: sizingInfo.isMobile ? null : 135.w,
                           margin: EdgeInsetsDirectional.only(end: 10.w),
+                          iconAlignment: IconAlignment.end,
                           icon: SvgPicture.asset("assets/export_icon.svg"),
                           onTap: () async {
                             Nav.showDialogs(context, const ExportDialog());

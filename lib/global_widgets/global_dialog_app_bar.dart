@@ -16,6 +16,7 @@ class GlobalDialogAppBar extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 20.sp),
       child: ListTile(
+        contentPadding: EdgeInsetsDirectional.only(start: 15.w),
         leading: Text(
           title,
           style: TextStyle(
