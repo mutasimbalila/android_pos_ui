@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class GlobalItemWidget extends StatefulWidget {
+class GlobalProductWidget extends StatefulWidget {
   final ItemModel model;
   final bool showCounter;
   final Function() onItemSelected;
-  const GlobalItemWidget({
+  const GlobalProductWidget({
     super.key,
     required this.onItemSelected,
     // required this.isSelected,
@@ -20,10 +20,10 @@ class GlobalItemWidget extends StatefulWidget {
   });
 
   @override
-  State<GlobalItemWidget> createState() => _GlobalItemWidgetState();
+  State<GlobalProductWidget> createState() => _GlobalProductWidgetState();
 }
 
-class _GlobalItemWidgetState extends State<GlobalItemWidget> {
+class _GlobalProductWidgetState extends State<GlobalProductWidget> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
@@ -108,7 +108,7 @@ class _GlobalItemWidgetState extends State<GlobalItemWidget> {
                               ),
                             ],
                           ),
-                          if (widget.showCounter)
+                          if (widget.showCounter || sizingInfo.isMobile)
                             GlobalCounterWidget(
                               value: widget.model.itemCount,
                               onResult: (inc) {

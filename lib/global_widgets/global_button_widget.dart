@@ -9,7 +9,9 @@ class GlobalButtonWidget extends StatelessWidget {
   final Color? textColor;
   final Function() onTap;
   final double? width;
+  final double? height;
   final Widget? icon;
+  final IconAlignment iconAlignment;
   final EdgeInsetsGeometry? margin;
   const GlobalButtonWidget(
       {super.key,
@@ -20,7 +22,9 @@ class GlobalButtonWidget extends StatelessWidget {
       this.borderColor,
       this.textColor,
       this.margin,
-      this.icon});
+      this.icon,
+      this.height,
+      this.iconAlignment = IconAlignment.start});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +32,9 @@ class GlobalButtonWidget extends StatelessWidget {
       padding: margin ?? EdgeInsets.symmetric(vertical: 10.h),
       child: SizedBox(
         width: width ?? double.infinity,
-        height: 50.h,
+        height: height ?? 50.h,
         child: ElevatedButton.icon(
+          iconAlignment: iconAlignment,
           style: ElevatedButton.styleFrom(
             elevation: 0.5,
             backgroundColor: backgroundColor ?? ThemeColors.primary,
@@ -38,7 +43,7 @@ class GlobalButtonWidget extends StatelessWidget {
                 color: borderColor ??
                     ThemeColors.primary.shade600.withOpacity(0.8),
               ),
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(11.r),
             ),
           ),
           onPressed: onTap,

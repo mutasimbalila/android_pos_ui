@@ -1,11 +1,11 @@
 import 'package:android_pos_ui/global_widgets/global_app_bar_button_item_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_app_bar_desktop.dart';
 import 'package:android_pos_ui/global_widgets/global_category_list_bar_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_item_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_search_bar_widget.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
-import 'package:android_pos_ui/views/tabs_views/pos_tab/grid_view_items_widget.dart';
-import 'package:android_pos_ui/views/tabs_views/pos_tab/order_details_view.dart';
+import 'package:android_pos_ui/views/tabs_views/pos/widget/grid_view_product_list_widget.dart';
+import 'package:android_pos_ui/order/order_create_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -34,12 +34,12 @@ class _PosDesktopTabViewState extends State<PosDesktopTabView> {
                 ),
                 GlobalCategoryListBarWidget(list: categoryDummyList),
                 Divider(height: 30.h, color: ThemeColors.secondary.shade200),
-                const Expanded(child: GridViewItemsWidget()),
+                const Expanded(child: GridViewProductsListWidget()),
               ],
             ),
           ),
         ),
-        OrderDetailsView(
+        OrderCreateDetailsView(
           itemsDummyList: itemsDummyList,
           onUnSelect: (p0) {
             itemsDummyList[p0].isSelected = false;
