@@ -83,7 +83,7 @@ class _OverviewTabViewState extends State<OverviewTabView> {
                         svgIcon: "total_sales_icon.svg",
                       ),
                       GlobalTotalWidget(
-                        title: "Total Sales",
+                        title: "Total Customers",
                         value: "4,324",
                         svgIcon: "total_customers_icons.svg",
                       ),
