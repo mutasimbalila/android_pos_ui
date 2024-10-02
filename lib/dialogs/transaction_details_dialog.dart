@@ -1,3 +1,5 @@
+import 'package:android_pos_ui/dialogs/delete_confirm_dialog.dart';
+import 'package:android_pos_ui/dialogs/transaction_edit_dialog.dart';
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_dialog_app_bar.dart';
 import 'package:android_pos_ui/global_widgets/global_image_network_with_loading.dart';
@@ -5,6 +7,7 @@ import 'package:android_pos_ui/global_widgets/global_invoice_total_item.dart';
 import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
 import 'package:android_pos_ui/tables/table_components.dart';
 import 'package:android_pos_ui/tables/transaction/transaction_table.dart';
+import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,7 +55,7 @@ class TransactionDetailsDialog extends StatelessWidget {
                         ),
                       ),
                       Divider(height: 20.sp),
-                      _buildButtonSection()
+                      _buildButtonSection(context)
                     ],
                   ),
                 ),
@@ -64,7 +67,7 @@ class TransactionDetailsDialog extends StatelessWidget {
     );
   }
 
-  Row _buildButtonSection() {
+  Row _buildButtonSection(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -95,7 +98,10 @@ class TransactionDetailsDialog extends StatelessWidget {
               BlendMode.srcIn,
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            Nav.pop(context);
+            Nav.showDialogs(context, TransactionEditDialog(model: model));
+          },
         ),
         GlobalButtonWidget(
           label: "Delete",
@@ -112,7 +118,13 @@ class TransactionDetailsDialog extends StatelessWidget {
               BlendMode.srcIn,
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            Nav.showDialogs(
+                context,
+                DeleteConfirmDialog(
+                  deletedInfo: model.orderID,
+                ));
+          },
         )
       ],
     );

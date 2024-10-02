@@ -1,8 +1,11 @@
+import 'package:android_pos_ui/dialogs/delete_confirm_dialog.dart';
 import 'package:android_pos_ui/dialogs/transaction_details_dialog.dart';
+import 'package:android_pos_ui/dialogs/transaction_edit_dialog.dart';
 import 'package:android_pos_ui/tables/table_components.dart';
 import 'package:android_pos_ui/tables/transaction/transaction_data_source.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -148,11 +151,19 @@ class _TransactionTableState extends State<TransactionTable> {
   _tableActions(TransactionDummy model, ActionType action) {
     if (action == ActionType.view) {
       Nav.showDialogs(context, TransactionDetailsDialog(model: model));
+    } else if (action == ActionType.edit) {
+      Nav.showDialogs(context, TransactionEditDialog(model: model));
+    } else if (action == ActionType.delete) {
+      Nav.showDialogs(
+          context,
+          DeleteConfirmDialog(
+            deletedInfo: model.orderID,
+          ));
     }
   }
 }
 
-class TransactionDummy {
+class TransactionDummy with CustomDropdownListFilter {
   final String orderID;
   final String receiptNo;
   final String menu;
@@ -161,6 +172,18 @@ class TransactionDummy {
   final String paymentMethod;
   TransactionDummy(this.orderID, this.receiptNo, this.menu,
       this.collectedCashier, this.dateTime, this.paymentMethod);
+
+  @override
+  bool filter(String query) {
+    return (orderID + menu + receiptNo)
+        .toLowerCase()
+        .contains(query.toLowerCase());
+  }
+
+  @override
+  String toString() {
+    return orderID;
+  }
 }
 
 final transactionsList = [
