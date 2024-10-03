@@ -18,7 +18,7 @@ class _TabsControllerViewState extends State<TabsControllerView> {
   final tabsViewList = [
     const PosTabView(),
     const OverviewTabView(),
-    const ProductTabView(),
+    const ProductsTabView(),
     const Text("Settings"),
     const Text("Help Center"),
   ];
@@ -27,8 +27,7 @@ class _TabsControllerViewState extends State<TabsControllerView> {
     return ResponsiveBuilder(
       builder: (context, sizingInfo) {
         return Scaffold(
-          appBar:
-              (sizingInfo.isMobile) ? const GlobalAppBarMobile() : null,
+          appBar: (sizingInfo.isMobile) ? const GlobalAppBarMobile() : null,
           backgroundColor: const Color(0xffF6F8F9),
           body: Row(
             children: [

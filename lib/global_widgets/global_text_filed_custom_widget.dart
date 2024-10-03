@@ -4,21 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class GlobalTextFiledCustomWidget extends StatefulWidget {
-  final String label;
+  final String? label;
   final String hint;
   final TextEditingController controller;
   final Function(String)? onChanged;
   final bool obscureText;
   final Widget? prefixIcon;
+  final EdgeInsetsGeometry? margin;
 
   const GlobalTextFiledCustomWidget({
     super.key,
-    required this.label,
+    this.label,
     required this.hint,
     required this.controller,
     this.obscureText = false,
     this.onChanged,
     this.prefixIcon,
+    this.margin,
   });
 
   @override
@@ -32,7 +34,7 @@ class _GlobalTextFiledCustomWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 15.h),
+      padding: widget.margin ?? EdgeInsets.symmetric(vertical: 15.h),
       child: TextField(
         controller: widget.controller,
         onChanged: widget.onChanged,

@@ -26,9 +26,10 @@ Widget globalCashedImageNetworkWithLoading(String imageUrl,
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  borderRadius: radius ?? BorderRadius.circular(8.r),
-                  color: Colors.white, //isDarkMode ? Colors.grey.shade900 :
-                ),
+                    borderRadius: radius ?? BorderRadius.circular(8.r),
+                    border: Border.all(
+                      color: Colors.grey.shade100,
+                    )),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

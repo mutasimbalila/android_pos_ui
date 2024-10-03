@@ -1,5 +1,5 @@
 import 'package:android_pos_ui/global_widgets/global_button_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_text_filed_custom_widget.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/views/auth/new_password/new_password_view.dart';

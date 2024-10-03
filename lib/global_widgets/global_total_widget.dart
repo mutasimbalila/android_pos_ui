@@ -8,12 +8,14 @@ class GlobalTotalWidget extends StatelessWidget {
   final String title;
   final String value;
   final String svgIcon;
+  final double? width;
 
   const GlobalTotalWidget({
     super.key,
     required this.title,
     required this.value,
     required this.svgIcon,
+    this.width,
   });
 
   @override
@@ -21,7 +23,7 @@ class GlobalTotalWidget extends StatelessWidget {
     return ResponsiveBuilder(
       builder: (BuildContext context, SizingInformation sizingInfo) {
         return Container(
-          width: 273.sp,
+          width: width ?? 273.sp,
           height: 100.w,
           padding: EdgeInsets.all(15.sp),
           // margin: EdgeInsetsDirectional.only(end: 10.w),
