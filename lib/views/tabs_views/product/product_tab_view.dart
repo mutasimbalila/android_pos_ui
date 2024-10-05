@@ -46,8 +46,8 @@ class _ProductsTabViewState extends State<ProductsTabView> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         GlobalButtonWidget(
-                          label: "Add new product",
-                          width: sizingInfo.isMobile ? null : 180.w,
+                          label: "Add Product",
+                          width: sizingInfo.isMobile ? null : 155.w,
                           iconAlignment: IconAlignment.end,
                           icon: SvgPicture.asset("assets/add_icon.svg"),
                           onTap: () async {
