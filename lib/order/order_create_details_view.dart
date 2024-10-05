@@ -6,7 +6,7 @@ import 'package:android_pos_ui/global_widgets/global_invoice_total_item.dart';
 import 'package:android_pos_ui/global_widgets/global_product_cart_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
 import 'package:android_pos_ui/global_widgets/global_payment_method_bar_widget.dart';
-import 'package:android_pos_ui/global_widgets/global_textFiled_custom_widget.dart';
+import 'package:android_pos_ui/global_widgets/global_text_filed_custom_widget.dart';
 import 'package:android_pos_ui/utils/navigators.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';

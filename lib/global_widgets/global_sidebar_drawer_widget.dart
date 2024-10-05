@@ -47,7 +47,7 @@ class GlobalSideBarDrawerWidget extends StatelessWidget {
         ),
         SideBarItem(
           iconSelectedSvg: "assets/product_icon_outlined.svg",
-          text: 'Product',
+          text: 'Products',
         ),
         SideBarItem(
           iconSelectedSvg: "assets/setting_icon_outlined.svg",

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+enum ActionType {
+  view,
+  edit,
+  delete,
+}
+
 GridColumn tableHeaderColumn({
   required String columnName,
   required String label,

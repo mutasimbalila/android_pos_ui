@@ -1,18 +1,21 @@
+import 'dart:math';
+
 import 'package:android_pos_ui/global_widgets/global_icon_button.dart';
+import 'package:android_pos_ui/global_widgets/global_image_network_with_loading.dart';
+import 'package:android_pos_ui/global_widgets/global_product_widget.dart';
+import 'package:android_pos_ui/tables/products/products_table.dart';
 import 'package:android_pos_ui/tables/table_components.dart';
-import 'package:android_pos_ui/tables/transaction/transaction_table.dart';
 import 'package:android_pos_ui/utils/theme_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-
-
-class TransactionDataSource extends DataGridSource {
-  final Function(TransactionDummy, ActionType) onActionsTapped;
-  TransactionDataSource({required this.onActionsTapped}) {
+class ProductsDataSource extends DataGridSource {
+  final Function(ItemModel, ActionType) onActionsTapped;
+  ProductsDataSource({required this.onActionsTapped}) {
     //TODO  move paging to controller
-    paginatedTransactions =
-        transactionsList.getRange(0, rowsPerPage).toList(growable: false);
+    paginatedProducts =
+        itemsDummyList.getRange(0, rowsPerPage).toList(growable: false);
     buildPaginatedDataGridRows();
   }
 
@@ -45,39 +48,45 @@ class TransactionDataSource extends DataGridSource {
   Future<bool> handlePageChange(int oldPageIndex, int newPageIndex) async {
     int startIndex = newPageIndex * rowsPerPage;
     int endIndex = startIndex + rowsPerPage;
-    if (startIndex < transactionsList.length &&
-        endIndex <= transactionsList.length) {
-      paginatedTransactions = transactionsList
-          .getRange(startIndex, endIndex)
-          .toList(growable: false);
+    if (startIndex < itemsDummyList.length &&
+        endIndex <= itemsDummyList.length) {
+      paginatedProducts =
+          itemsDummyList.getRange(startIndex, endIndex).toList(growable: false);
       buildPaginatedDataGridRows();
       notifyListeners();
     } else {
-      paginatedTransactions = [];
+      paginatedProducts = [];
     }
 
     return true;
   }
 
   void buildPaginatedDataGridRows() {
-    dataGridRows = paginatedTransactions.map<DataGridRow>((dg) {
+    dataGridRows = paginatedProducts.map<DataGridRow>((model) {
       return DataGridRow(cells: [
-        DataGridCell<String>(columnName: 'id', value: dg.orderID),
-        DataGridCell<String>(columnName: 'receipt_no', value: dg.receiptNo),
-        DataGridCell<String>(columnName: 'menu', value: dg.menu),
-        DataGridCell<String>(
-            columnName: 'Collected/Cashier', value: dg.collectedCashier),
-        DataGridCell<String>(columnName: 'Date & Time', value: dg.dateTime),
         DataGridCell<Widget>(
-          columnName: 'Payment method',
-          value: tableCellColoredStatusItem(dg.paymentMethod),
-        ),
-        DataGridCell<Widget>(columnName: 'Action', value: _buildButtonsBar(dg)),
+            columnName: 'Product name',
+            value: _buildProductNameWithImage(model)),
+        DataGridCell<String>(
+            columnName: 'Order/day',
+            value: (Random().nextInt(99) + 10).toString()),
+        DataGridCell<Widget>(
+            columnName: 'Category', value: tableCellColoredStatusItem("Salad")),
+        DataGridCell<String>(
+            columnName: 'Price/unit', value: "\$${model.price}"),
+        DataGridCell<String>(
+            columnName: 'Stock',
+            value: (Random().nextInt(500) + 100).toString()),
+        const DataGridCell<String>(columnName: 'Tax', value: "2%"),
+        DataGridCell<String>(
+            columnName: 'Discount', value: "${(Random().nextInt(20) + 3)}%"),
+        DataGridCell<Widget>(
+            columnName: 'Action', value: _buildButtonsBar(model)),
       ]);
     }).toList(growable: false);
   }
 
-  Row _buildButtonsBar(TransactionDummy model) {
+  Row _buildButtonsBar(ItemModel model) {
     return Row(
       children: [
         GlobalIconButton(
@@ -104,6 +113,27 @@ class TransactionDataSource extends DataGridSource {
           },
         ),
       ],
+    );
+  }
+
+  _buildProductNameWithImage(ItemModel model) {
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      horizontalTitleGap: 10.w,
+      leading: SizedBox(
+        height: 37.sp,
+        width: 37.sp,
+        child: globalCashedImageNetworkWithLoading(
+          model.imageUrl,
+          fit: BoxFit.cover,
+          showNotFoundImage: false,
+          radius: BorderRadius.circular(100.r),
+        ),
+      ),
+      title: Text(
+        model.name,
+        maxLines: 1,
+      ),
     );
   }
 
