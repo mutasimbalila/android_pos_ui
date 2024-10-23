@@ -6,10 +6,12 @@ import 'package:flutter_svg/svg.dart';
 class GlobalTextFiledCustomWidget extends StatefulWidget {
   final String? label;
   final String hint;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final Function(String)? onChanged;
   final bool obscureText;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool enabled;
   final EdgeInsetsGeometry? margin;
 
   const GlobalTextFiledCustomWidget({
@@ -21,6 +23,8 @@ class GlobalTextFiledCustomWidget extends StatefulWidget {
     this.onChanged,
     this.prefixIcon,
     this.margin,
+    this.enabled = true,
+    this.suffixIcon,
   });
 
   @override
@@ -38,6 +42,7 @@ class _GlobalTextFiledCustomWidgetState
       child: TextField(
         controller: widget.controller,
         onChanged: widget.onChanged,
+        readOnly: (!widget.enabled),
         style: TextStyle(
           color: ThemeColors.secondary.shade500,
           height: 1.5,
@@ -71,8 +76,10 @@ class _GlobalTextFiledCustomWidgetState
           suffixIcon: widget.obscureText
               ? IconButton(
                   onPressed: () {
-                    obscureState = !obscureState;
-                    setState(() {});
+                    if (widget.enabled) {
+                      obscureState = !obscureState;
+                      setState(() {});
+                    }
                   },
                   icon: SvgPicture.asset(
                     "assets/${obscureState ? "visibility_on" : "visibility_off"}.svg",
@@ -82,7 +89,7 @@ class _GlobalTextFiledCustomWidgetState
                     ),
                   ),
                 )
-              : null,
+              : widget.suffixIcon,
         ),
         obscureText: widget.obscureText && !obscureState,
       ),

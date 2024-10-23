@@ -7,9 +7,11 @@ import 'package:sidebar_with_animation/animated_side_bar.dart';
 
 class GlobalSideBarDrawerWidget extends StatelessWidget {
   final void Function(int)? onSelect;
+  final int selectedIndex;
   const GlobalSideBarDrawerWidget({
     super.key,
     required this.onSelect,
+    required this.selectedIndex,
   });
 
   @override
@@ -23,7 +25,7 @@ class GlobalSideBarDrawerWidget extends StatelessWidget {
       selectedColor: ThemeColors.primary,
       minimizeIcon: Icons.menu,
       expandIcon: Icons.menu,
-
+      // initialIndex: 0,
       unSelectedTextColor: ThemeColors.secondary.shade400,
       unselectedIconColor: ThemeColors.secondary.shade400,
       minimizeButtonColor: ThemeColors.secondary.shade400,

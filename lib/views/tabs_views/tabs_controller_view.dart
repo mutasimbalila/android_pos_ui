@@ -3,6 +3,7 @@ import 'package:android_pos_ui/global_widgets/global_sidebar_drawer_widget.dart'
 import 'package:android_pos_ui/views/tabs_views/overview/overview_tab_view.dart';
 import 'package:android_pos_ui/views/tabs_views/pos/pos_tab_view.dart';
 import 'package:android_pos_ui/views/tabs_views/product/product_tab_view.dart';
+import 'package:android_pos_ui/views/tabs_views/setting/settings_tab_view.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -19,7 +20,7 @@ class _TabsControllerViewState extends State<TabsControllerView> {
     const PosTabView(),
     const OverviewTabView(),
     const ProductsTabView(),
-    const Text("Settings"),
+    const SettingsTabView(),
     const Text("Help Center"),
   ];
   @override
@@ -34,9 +35,15 @@ class _TabsControllerViewState extends State<TabsControllerView> {
               if (!sizingInfo.isMobile)
                 GlobalSideBarDrawerWidget(
                   onSelect: (value) {
-                    selectedTab = value;
-                    setState(() {});
+                    Future.delayed(
+                      const Duration(milliseconds: 100),
+                      () {
+                        selectedTab = value;
+                        setState(() {});
+                      },
+                    );
                   },
+                  selectedIndex: selectedTab,
                 ),
               Expanded(child: Center(child: tabsViewList[selectedTab])),
             ],
@@ -45,9 +52,15 @@ class _TabsControllerViewState extends State<TabsControllerView> {
               ? SafeArea(
                   child: GlobalSideBarDrawerWidget(
                     onSelect: (value) {
-                      selectedTab = value;
-                      setState(() {});
+                      Future.delayed(
+                        const Duration(milliseconds: 100),
+                        () {
+                          selectedTab = value;
+                          setState(() {});
+                        },
+                      );
                     },
+                    selectedIndex: selectedTab,
                   ),
                 )
               : null,
