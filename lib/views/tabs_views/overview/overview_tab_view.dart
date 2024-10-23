@@ -73,32 +73,14 @@ class _OverviewTabViewState extends State<OverviewTabView> {
                 padding: EdgeInsets.only(bottom: 15.sp),
                 child: SizedBox(
                   width: double.infinity,
-                  child: Wrap(
-                    alignment: WrapAlignment.start,
-                    spacing: 12.sp,
-                    children: const [
-                      GlobalTotalWidget(
-                        title: "Total Sales",
-                        value: "\$121,412",
-                        svgIcon: "total_sales_icon.svg",
-                      ),
-                      GlobalTotalWidget(
-                        title: "Total Customers",
-                        value: "4,324",
-                        svgIcon: "total_customers_icons.svg",
-                      ),
-                      GlobalTotalWidget(
-                        title: "Total Order",
-                        value: "5,021",
-                        svgIcon: "total_order_icons.svg",
-                      ),
-                      GlobalTotalWidget(
-                        title: "Total Tip",
-                        value: "\$1,412",
-                        svgIcon: "total_tip_icons.svg",
-                      ),
-                    ],
-                  ),
+                  child: sizingInfo.isMobile
+                      ? Column(
+                          children: _getTotalStatisticWidgets,
+                        )
+                      : Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: _getTotalStatisticWidgets,
+                        ),
                 ),
               ),
               Expanded(
@@ -131,5 +113,31 @@ class _OverviewTabViewState extends State<OverviewTabView> {
         );
       },
     );
+  }
+
+  List<Widget> get _getTotalStatisticWidgets {
+    return const [
+      GlobalTotalWidget(
+        title: "Total Sales",
+        value: "\$121,412",
+        svgIcon: "total_sales_icon.svg",
+      ),
+      GlobalTotalWidget(
+        title: "Total Customers",
+        value: "4,324",
+        svgIcon: "total_customers_icons.svg",
+      ),
+      GlobalTotalWidget(
+        title: "Total Order",
+        value: "5,021",
+        svgIcon: "total_order_icons.svg",
+      ),
+      GlobalTotalWidget(
+        title: "Total Tip",
+        value: "\$1,412",
+        svgIcon: "total_tip_icons.svg",
+        margin: EdgeInsetsDirectional.zero,
+      ),
+    ];
   }
 }

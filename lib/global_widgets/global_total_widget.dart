@@ -9,6 +9,7 @@ class GlobalTotalWidget extends StatelessWidget {
   final String value;
   final String svgIcon;
   final double? width;
+  final EdgeInsetsGeometry margin;
 
   const GlobalTotalWidget({
     super.key,
@@ -16,57 +17,61 @@ class GlobalTotalWidget extends StatelessWidget {
     required this.value,
     required this.svgIcon,
     this.width,
+    this.margin = const EdgeInsetsDirectional.only(end: 15),
   });
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveBuilder(
-      builder: (BuildContext context, SizingInformation sizingInfo) {
-        return Container(
-          width: width ?? 273.sp,
-          height: 100.w,
-          padding: EdgeInsets.all(15.sp),
-          // margin: EdgeInsetsDirectional.only(end: 10.w),
-          decoration: BoxDecoration(
-            color: ThemeColors.primary.shade50,
-            border: Border.all(color: ThemeColors.secondary.shade200),
-            borderRadius: BorderRadius.circular(7.r),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 2),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 13.sp,
-                          color: ThemeColors.secondary.shade400,
+    return Expanded(
+      child: ResponsiveBuilder(
+        builder: (BuildContext context, SizingInformation sizingInfo) {
+          return Container(
+            margin: margin,
+            // width: width ?? 273.sp,
+            height: 100.w,
+            padding: EdgeInsets.all(15.sp),
+            // margin: EdgeInsetsDirectional.only(end: 10.w),
+            decoration: BoxDecoration(
+              color: ThemeColors.primary.shade50,
+              border: Border.all(color: ThemeColors.secondary.shade200),
+              borderRadius: BorderRadius.circular(7.r),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 2),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 13.sp,
+                            color: ThemeColors.secondary.shade400,
+                          ),
                         ),
-                      ),
-                      Text(
-                        value,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.sp,
-                          color: ThemeColors.secondary,
+                        Text(
+                          value,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22.sp,
+                            color: ThemeColors.secondary,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SvgPicture.asset("assets/$svgIcon")
-            ],
-          ),
-        );
-      },
+                SvgPicture.asset("assets/$svgIcon")
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

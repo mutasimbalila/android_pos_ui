@@ -64,30 +64,14 @@ class _ProductsTabViewState extends State<ProductsTabView> {
                 padding: EdgeInsets.only(bottom: 15.sp),
                 child: SizedBox(
                   width: double.infinity,
-                  child: Wrap(
-                    alignment: WrapAlignment.start,
-                    spacing: 12.sp,
-                    children: [
-                      GlobalTotalWidget(
-                        title: "Total Products",
-                        value: "\$121,412",
-                        svgIcon: "total_products_icon.svg",
-                        width: 368.5.w,
-                      ),
-                      GlobalTotalWidget(
-                        title: "Total Category Product",
-                        value: "4,324",
-                        svgIcon: "total_category_product_icons.svg",
-                        width: 368.5.w,
-                      ),
-                      GlobalTotalWidget(
-                        title: "Purchase Invoice",
-                        value: "5,021",
-                        svgIcon: "purchase_invoice_icon.svg",
-                        width: 368.5.w,
-                      ),
-                    ],
-                  ),
+                  child: sizingInfo.isMobile
+                      ? Column(
+                          children: _getTotalStatisticWidgets,
+                        )
+                      : Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: _getTotalStatisticWidgets,
+                        ),
                 ),
               ),
               Expanded(
@@ -118,5 +102,29 @@ class _ProductsTabViewState extends State<ProductsTabView> {
         );
       },
     );
+  }
+
+  List<Widget> get _getTotalStatisticWidgets {
+    return [
+      GlobalTotalWidget(
+        title: "Total Products",
+        value: "\$121,412",
+        svgIcon: "total_products_icon.svg",
+        width: 368.5.w,
+      ),
+      GlobalTotalWidget(
+        title: "Total Category Product",
+        value: "4,324",
+        svgIcon: "total_category_product_icons.svg",
+        width: 368.5.w,
+      ),
+      GlobalTotalWidget(
+        title: "Purchase Invoice",
+        value: "5,021",
+        svgIcon: "purchase_invoice_icon.svg",
+        width: 368.5.w,
+        margin: EdgeInsetsDirectional.zero,
+      ),
+    ];
   }
 }

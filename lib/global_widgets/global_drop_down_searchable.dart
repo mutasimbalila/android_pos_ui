@@ -58,11 +58,6 @@ class GlobalDropDownSearchable<T> extends StatelessWidget {
   CustomDropdown<dynamic> _buildDropdown() {
     return CustomDropdown<T>.search(
       hintText: hint,
-      enabled: enabled,
-      // enabled: false,
-      // closedHeaderPadding: EdgeInsets.zero,
-      // listItemPadding: EdgeInsets.zero,
-      // itemsListPadding: EdgeInsets.zero,
       // expandedHeaderPadding: EdgeInsets.zero,
       items: list,
       headerBuilder: !useStatusBox
